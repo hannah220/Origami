@@ -1,0 +1,26 @@
+<div class="container items">
+  <div class="row">
+    <div class="col-md-12">
+      <% @items.each do |item| %>
+        <p>Name</p><%= link_to item.name, item %>
+        <p>Description</p><%= item.description %>
+        <p>Price</p><%= number_to_currency(item.price, :unit => "€") %>
+      <%= form_tag(store_cart_item_path(item.id), method: :post) do  %>
+        <%= label_tag(:quantity, "Quantity: ")  %>
+        <%= number_field_tag(:quantity, class: 'form-control') %>
+        <%= label_tag(:size, "Size: ")  %>
+        <%= select_tag(:size, options_for_select(item.sizes.map {|s| [s.name, s.id]})) %>
+        <!-- f.select :size, item.sizes.map {|s| [s.name, s.id]} -->
+
+        <%= button_to 'Put in cart', store_cart_item_path(item.id) %>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-2">
+      <%= link_to 'New Item', new_item_path %>
+    </div>
+  </div>
+</div>

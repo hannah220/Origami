@@ -1,0 +1,28 @@
+<div class="container items">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <table>
+        <thead>
+          <td>Item Name</td>
+          <td>Quantity</td>
+          <td>Size</td>
+          <td>Single Price</td>
+          <td>Subtotal</td>
+        </thead>
+        <% @cart.each do |c| %>
+          <tr>
+            <td><%= @items.find(c["item_id"]).name %></td>
+            <td><%= c["quantity"] %></td>
+            <td><%= c["size"] %></td>
+            <td><%= @items.find(c["item_id"]).price %></td>
+            <td><%= @items.find(c["item_id"]).price * c["quantity"].to_d %></td>
+          </tr>
+        <% end %>
+      </table>
+      <p>Total</p>
+      <p><%= number_to_currency(@price, :unit => "€") %></p>
+    </div>
+  </div>
+  <%= link_to 'Empty cart', empty_cart_path %>
+  <%= link_to "Order", store_checkout_path %>
+</div>

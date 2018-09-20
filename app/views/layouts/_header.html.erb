@@ -1,0 +1,38 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "origami", '#', id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home", '#' %></li>
+        <% if logged_in? %>
+          <li><%= link_to "Users", '#' %></li>
+          <div class="dropdown">
+           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Account
+             <span class="caret"></span>
+           </button> 
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", user_path(current_user) %></li>
+              <li><%= link_to "Settings", '#' %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Log out", logout_path, method: :delete %></li>
+            </ul>
+          </div>
+        <% else %>
+          <li><%= link_to "Log in", login_path %></li>
+        <% end %>
+        <% unless @cart.blank? %>
+          <ul>
+            <li>There is <%= @total_amount %> items in the cart</p>
+            <li>Total amount of money is <%= @price %></p>
+            <li><%= link_to "See cart", store_cart_path %></p>
+            <li><%= link_to "Empty cart", empty_cart_path %>
+          </ul>
+        <% else %>
+          <p>Cart is empty</p>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+

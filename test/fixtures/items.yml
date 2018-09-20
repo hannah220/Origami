@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: rose
+  description: it is a beautiful rose
+  price: 50
+  category_id: 1
+
+two:
+  name: spider
+  description: hello
+  price: 120
+  category_id: 2

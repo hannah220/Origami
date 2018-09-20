@@ -1,0 +1,58 @@
+<div class="container order">
+  <div class="row">
+    <h1>Process order</h1>
+  </div>
+
+  
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <p><b>Customer: </b> <%= @order.customer.last_name %></p>
+      <p><b>Shipping address:</b><br/>
+      <%= get_shipping_street(@order) %>
+      <%= get_shipping_postal(@order) %>
+      <%= get_shipping_zip(@order) %>
+      <%= get_shipping_country(@order) %>
+      <p><b>Billing address:</b><br/>
+      <%= get_billing_street(@order) %>
+      <%= get_billing_postal(@order) %>
+      <%= get_billing_zip(@order) %>
+      <%= get_billing_country(@order) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <table>
+        <thead>
+          <tr>
+            <th class="table_name">Item</th>
+            <th class="table_desc">Quantity</th>
+            <th class="table_price">Each</th>
+            <th class="table_cat">Total Price</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @order.order_line.each do |ol|  %>
+            <tr>
+              <td class="table_name"><%= ol.item.name %></td>
+              <td class="table_desc"><%= ol.item_amount %></td>
+              <td class="table_desc"><%= ol.item.price %></td>
+              <td class="table_price"><%= number_to_currency(ol.item_amount * ol.item.price, :unit => "€") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    €<%= @price %>
+  </div>
+
+  <%= button_to 'Process order', order_handled_path(@order) %>
+  <%= button_to 'Delete order', order_path(@order), :method => :delete %>
+
+</div>
+

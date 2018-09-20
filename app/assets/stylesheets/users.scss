@@ -1,0 +1,26 @@
+.users {
+  background: #f2ece9;
+  .table-font {
+    font-size: 14px;
+  }
+  .td {
+    width: 15%;
+  }
+  .table_last {
+    width: 15%;
+  }
+  .table_email {
+    width: 30%;
+  }
+  .table_addr {
+    width: 40%;
+  }
+  .signup input, textarea {
+    border: 1px solid #bbb;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .signup button {
+    width: 40%;
+  }
+}

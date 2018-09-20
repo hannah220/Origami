@@ -1,0 +1,13 @@
+<div class="container items">
+  <div class="row">
+    <h1>Welcome to Origami Site</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <% @categories.each do |c| %>
+        <%= link_to c.name, items_per_cat_path(:category_id => c) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

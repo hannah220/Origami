@@ -1,0 +1,29 @@
+<div class="container checkout">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <h1>Order</h1>
+      <%= form_for @customer, :url => { :controller => "store", :action => "express_checkout" } do |f| %>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+
+        <p>Shipping Address</p>
+        <%= f.fields_for @shipping_addr do |s| %>
+          <%= s.label :street %>
+          <%= s.text_field :street %>
+          <%= s.label :postal %>
+          <%= s.text_field :postal %>
+          <%= s.label :zip %>
+          <%= s.text_field :zip %>
+          <%= s.label :country %>
+          <%= s.text_field :country %>
+        <% end %>
+
+        <%= button_tag type: "submit", class: "btn btn--block" do %>
+          Next<i class="icon-arrow-right"></i>
+        <% end %>
+      <% end %>
+     </div>
+   </div>
+</div>
